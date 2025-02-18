@@ -246,6 +246,20 @@ const handlePlantsClick = (e) => {
     e.preventDefault();
     setShowCart(false);
   };
+
+  const  createPlantList = function (plantList,category){
+      return plantList.map((plantItem,plantIndex) => (
+            <div className="product-card" key={plantIndex}>
+                <img className="product-image" src={plantItem.image} />
+                <div className='product-title'>{plantItem.name}</div>
+                <div className='product-description'>{plantItem.description}</div>
+                <div className='product-price'>{plantItem.cost}</div>
+                <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+            </div>
+     ) )  
+            
+  }
+
     return (
         <div>
              <div className="navbar" style={styleObj}>
@@ -268,14 +282,19 @@ const handlePlantsClick = (e) => {
         </div>
         {!showCart? (
         <div className="product-grid">
-
-
+           { plantsArray.map((item, index) => (
+                <div key={index}>
+                    <h2><div>{item.category}</div></h2>
+                    <div className='product-list'>
+                    {createPlantList(item.plants,item.category)} 
+                   </div>
+                        
+                   
+                </div> ))//end of plant category
+            } 
+            </div>//end of products-grid
+            ):<p>no plants</p>}                
         </div>
- ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
 )}
-    </div>
-    );
-}
 
 export default ProductList;
