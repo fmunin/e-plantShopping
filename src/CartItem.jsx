@@ -3,15 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { addItem, removeItem, updateQuantity } from "./CartSlice";
 import "./CartItem.css";
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onClick }) => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
-
-  const handleContinueShopping = (e) => {
-    console.log("continue shopping");
-    e.preventDefault();
-    onContinueShopping(e);
-  };
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
@@ -88,8 +82,8 @@ const CartItem = ({ onContinueShopping }) => {
         className="total_cart_amount"
       ></div>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={handleContinueShopping}>
-          Continue Shopping
+        <button className="get-started-button" onClick={onClick}>
+          Continue Shopping{" "}
         </button>
         <br />
         <button className="get-started-button1">

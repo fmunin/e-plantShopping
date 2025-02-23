@@ -284,6 +284,7 @@ function ProductList() {
   };
 
   const handleContinueShopping = (e) => {
+    console.log("continue shopping called");
     e.preventDefault();
     setShowCart(false);
   };
@@ -397,7 +398,7 @@ function ProductList() {
         </div> //end of products-grid
       ) : (
         <div>
-          <CartItem handleContinueShopping={handleContinueShopping} />
+          <CartItem onClick={handleContinueShopping} />
         </div>
       )}
     </div>
