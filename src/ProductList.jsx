@@ -295,9 +295,13 @@ function ProductList() {
       ...prevState,
       [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
     }));
-    //debug code
-    console.log(addedToCart);
   };
+
+  function enableAddToCart(ckPlantNm) {
+    let result = addedToCart.hasOwnProperty(ckPlantNm);
+    console.log(ckPlantNm + "in added to cart " + result);
+    return result ? "product-button added-to-cart" : "product-button";
+  }
 
   const createPlantList = function (plantList, category) {
     return plantList.map((plantItem, plantIndex) => (
@@ -307,7 +311,7 @@ function ProductList() {
         <div className="product-description">{plantItem.description}</div>
         <div className="product-price">{plantItem.cost}</div>
         <button
-          className="product-button"
+          className={enableAddToCart(plantItem.name)}
           onClick={() => handleAddToCart(plantItem)}
         >
           Add to Cart
