@@ -82,7 +82,13 @@ const CartItem = ({ onClick }) => {
         className="total_cart_amount"
       ></div>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={onClick}>
+        <button
+          className="get-started-button"
+          onClick={(e) => {
+            // console.log(cart);
+            onClick(e, cart);
+          }}
+        >
           Continue Shopping{" "}
         </button>
         <br />
